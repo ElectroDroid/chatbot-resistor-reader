@@ -18,11 +18,21 @@ if (!is_null($events['events'])) {
 			$replyToken = $event['replyToken'];
 			// Build message to reply back
 			
-			if(strpos($text,'Hello')!==false) {
+			if( (strpos($text,'Hello')!==false) || (strpos($text,'hello')!==false)){
 
 			$messages = [
 				'type' => 'text',
-				'text' => 'Hello! Let\'s me help you read resistance color code.'
+				'text' => 'Hello! Let\'s me help you read resistor color code.'
+			];
+
+			}
+
+			else if( (strpos($text,'Help')!==false) || (strpos($text,'help')!==false)){
+
+			$messages = [
+				'type' => 'sticker',
+    			'packageId' => '1',
+    			'stickerId' => '1'
 			];
 
 			}

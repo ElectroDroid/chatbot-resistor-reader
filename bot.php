@@ -20,28 +20,32 @@ if (!is_null($events['events'])) {
 			
 			if( (strpos($text,'Hello')!==false) || (strpos($text,'hello')!==false)){
 
-			$messages = [
-				'type' => 'text',
-				'text' => 'Hello! Let\'s me help you read resistor color code.'
-			];
+				$messages = [
+					'type' => 'text',
+					'text' => 'Hello! Let\'s me help you read resistor color code.'
+				];
 
 			}
 
 			else if( (strpos($text,'Help')!==false) || (strpos($text,'help')!==false)){
 
-			$messages = [
-				'type' => 'sticker',
-    			'packageId' => '1',
-    			'stickerId' => '1'
-			];
+				$messages = [
+					'type' => 'text',
+					'text' => 'Sorry, Tang-Si is sleeping now...'
+				];
+				$messages = [
+					'type' => 'sticker',
+	    			'packageId' => '1',
+	    			'stickerId' => '1'
+				];
 
 			}
 
 			else {
 				$messages = [
-				'type' => 'text',
-				'text' => $text
-			];
+					'type' => 'text',
+					'text' => $text
+				];
 			}
 
 

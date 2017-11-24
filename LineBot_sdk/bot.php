@@ -70,18 +70,18 @@
 	                    break;
 	                
 	                case "help":
-	         //        	$textReplyMessage = "Sorry, Tang-Si is sleeping now."
-	         //        	$textMessage = new TextMessageBuilder($textReplyMessage);
+	                	$textReplyMessage = "Sorry, Tang-Si is sleeping now."
+	                	$textMessage = new TextMessageBuilder($textReplyMessage);
 	                	
 	                	$stickerID = 1;
 	                	$packageID = 1;
-	                	$replyData = new StickerMessageBuilder($packageID,$stickerID);	
+	                	$stickerMessage = new StickerMessageBuilder($packageID,$stickerID);	
 	                	
-	         //        	//Multimessage replying
-	         //        	$multiMessage = new MultiMessageBuilder;
-	         //        	$multiMessage->add($textMessage);
-	         //        	$multiMessage->add($stickerMessage);
-   	 					// $replyData = $multiMessage;                  
+	                	//Multimessage replying
+	                	$multiMessage = new MultiMessageBuilder;
+	                	$multiMessage->add($textMessage);
+	                	$multiMessage->add($stickerMessage);
+   	 					$replyData = $multiMessage;                  
 	                	break;
 	                	
 	                default:

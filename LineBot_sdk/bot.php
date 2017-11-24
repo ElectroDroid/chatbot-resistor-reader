@@ -64,14 +64,26 @@
 	    switch ($typeMessage){
 	        case 'text':
 	            switch ($userMessage) {
-	                case "A":
-	                    $textReplyMessage = "Apple";
+	                case "Hello":
+	                    $textReplyMessage = "Hello! Let's me help you read resistor color bar.";
 	                    break;
-	                case "B":
-	                    $textReplyMessage = "Banana";
-	                    break;
+	                case "help":
+
+	                	$$textReplyMessage = "Sorry, Tang-Si is sleeping now."
+	                	$textMessage = new TextMessageBuilder($textReplyMessage);
+
+	                	$stickerID = 1;
+                    	$packageID = 1;
+                    	$StickerMessage = new StickerMessageBuilder($packageID,$stickerID);
+	                	
+	                	// Multimessage replying
+	                	$multiMessage = new MultiMessageBuilder;
+   						$multiMessage->add($textMessage);
+   	 					$multiMessage->add($StickerMessage);
+    					$replyData = $multiMessage;                  
+	                	break;
 	                default:
-	                    $textReplyMessage = "Not Apple and Banana";
+	                    $textReplyMessage = "Sorry, I don't know what are you talking about?";
 	                    break;                                      
 	            }
 	            break;
@@ -81,21 +93,10 @@
 	    }
 	}
 
-
-
-
 	//Prepare message for replying
 	$textMessageBuilder = new TextMessageBuilder($textReplyMessage);
 	 
 	//Reply message
 	$response = $bot->replyMessage($replyToken,$textMessageBuilder);
 
-
-	if ($response->isSucceeded()) {
-	    echo 'Succeeded!';
-	    return;
-	}
-	 
-	// Failed
-	echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 ?>

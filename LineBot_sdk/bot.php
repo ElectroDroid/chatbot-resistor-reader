@@ -95,14 +95,13 @@
 	            $replyData = new TextMessageBuilder($textReplyMessage);  
 	            break;  
 	    }
-	}
 
-	//Prepare message for replying
-	//$textMessageBuilder = new TextMessageBuilder($textReplyMessage);
+	    //Prepare message for replying
+		//$textMessageBuilder = new TextMessageBuilder($textReplyMessage);
 	 
-	//Reply message
-	$response = $bot->replyMessage($replyToken,$replyData);
-
+		//Reply message
+		$response = $bot->replyMessage($replyToken,$replyData);
+	}
 
 	echo "Tang-Si is OK!";
 ?>

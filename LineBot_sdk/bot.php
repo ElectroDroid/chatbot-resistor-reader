@@ -68,21 +68,22 @@
 	                    $textReplyMessage = "Hello! Let's me help you read resistor color bar.";
 	                    $replyData = new TextMessageBuilder($textReplyMessage);
 	                    break;
-	                case "help":
-
-	                	$textReplyMessage = "Sorry, Tang-Si is sleeping now."
-	                	$textMessage = new TextMessageBuilder($textReplyMessage);
+	                
+	         //        case "help":
+	         //        	$textReplyMessage = "Sorry, Tang-Si is sleeping now."
+	         //        	$textMessage = new TextMessageBuilder($textReplyMessage);
 	                	
-	                	$stickerID = 1;
-                    	$packageID = 1;
-                    	$stickerMessage = new StickerMessageBuilder($packageID,$stickerID);
+	         //        	$stickerID = 1;
+	         //        	$packageID = 1;
+	         //        	$stickerMessage = new StickerMessageBuilder($packageID,$stickerID);
 	                	
-	                	// Multimessage replying
-	                	$multiMessage = new MultiMessageBuilder;
-   						$multiMessage->add($textMessage);
-   	 					$multiMessage->add($stickerMessage);
-    					$replyData = $multiMessage;                  
-	                	break;
+	         //        	//Multimessage replying
+	         //        	$multiMessage = new MultiMessageBuilder;
+	         //        	$multiMessage->add($textMessage);
+	         //        	$multiMessage->add($stickerMessage);
+   	 					// $replyData = $multiMessage;                  
+	         //        	break;
+	                	
 	                default:
 	                    $textReplyMessage = "Sorry, I don't know what are you talking about?";
 	                    $replyData = new TextMessageBuilder($textReplyMessage);

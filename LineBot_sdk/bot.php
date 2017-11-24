@@ -75,8 +75,7 @@
 	                	
 	                	$stickerID = 1;
 	                	$packageID = 1;
-	                	$stickerMessage = new StickerMessageBuilder($packageID,$stickerID);
-	                	$replyData = $stickerMessage
+	                	$replyData = new StickerMessageBuilder($packageID,$stickerID);	
 	                	
 	         //        	//Multimessage replying
 	         //        	$multiMessage = new MultiMessageBuilder;

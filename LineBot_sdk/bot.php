@@ -5,7 +5,7 @@
 	error_reporting(E_ALL);
 	 
 	// include composer autoload
-	require_once '../vendor/autoload.php';
+	require_once '/vendor/autoload.php';
 	 
 	// Setting Bot
 	require_once 'bot_settings.php';

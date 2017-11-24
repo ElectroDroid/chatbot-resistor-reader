@@ -99,4 +99,6 @@
 	//Reply message
 	$response = $bot->replyMessage($replyToken,$textMessageBuilder);
 
+
+	echo "Tang-Si is OK!";
 ?>

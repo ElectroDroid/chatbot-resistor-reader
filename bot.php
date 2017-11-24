@@ -33,10 +33,11 @@ if (!is_null($events['events'])) {
 					'type' => 'text',
 					'text' => 'Sorry, Tang-Si is sleeping now...'
 				];
+
 				$messages = [
 					'type' => 'sticker',
-	    			'packageId' => '1',
-	    			'stickerId' => '1'
+					'packageId' => '1',
+					'stickerId' => '1'
 				];
 
 			}

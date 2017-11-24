@@ -74,12 +74,12 @@
 
 	                	$stickerID = 1;
                     	$packageID = 1;
-                    	$StickerMessage = new StickerMessageBuilder($packageID,$stickerID);
+                    	$stickerMessage = new StickerMessageBuilder($packageID,$stickerID);
 	                	
 	                	// Multimessage replying
 	                	$multiMessage = new MultiMessageBuilder;
    						$multiMessage->add($textMessage);
-   	 					$multiMessage->add($StickerMessage);
+   	 					$multiMessage->add($stickerMessage);
     					$replyData = $multiMessage;                  
 	                	break;
 	                default:

@@ -66,12 +66,13 @@
 	            switch ($userMessage) {
 	                case "Hello":
 	                    $textReplyMessage = "Hello! Let's me help you read resistor color bar.";
+	                    $replyData = new TextMessageBuilder($textReplyMessage);
 	                    break;
 	                case "help":
 
-	                	$$textReplyMessage = "Sorry, Tang-Si is sleeping now."
+	                	$textReplyMessage = "Sorry, Tang-Si is sleeping now."
 	                	$textMessage = new TextMessageBuilder($textReplyMessage);
-
+	                	
 	                	$stickerID = 1;
                     	$packageID = 1;
                     	$stickerMessage = new StickerMessageBuilder($packageID,$stickerID);
@@ -84,20 +85,22 @@
 	                	break;
 	                default:
 	                    $textReplyMessage = "Sorry, I don't know what are you talking about?";
+	                    $replyData = new TextMessageBuilder($textReplyMessage);
 	                    break;                                      
 	            }
 	            break;
 	        default:
 	            $textReplyMessage = json_encode($events);
+	            $replyData = new TextMessageBuilder($textReplyMessage);  
 	            break;  
 	    }
 	}
 
 	//Prepare message for replying
-	$textMessageBuilder = new TextMessageBuilder($textReplyMessage);
+	//$textMessageBuilder = new TextMessageBuilder($textReplyMessage);
 	 
 	//Reply message
-	$response = $bot->replyMessage($replyToken,$textMessageBuilder);
+	$response = $bot->replyMessage($replyToken,$replyData);
 
 
 	echo "Tang-Si is OK!";

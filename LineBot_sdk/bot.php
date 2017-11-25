@@ -59,10 +59,16 @@
 	$events = json_decode($content, true);
 	if(!is_null($events)){
 		$replyToken = $events['events'][0]['replyToken'];
-	    $typeMessage = $events['events'][0]['message']['type'];
-	    $userMessage = $events['events'][0]['message']['text'];
-	    $user_stickerID = $events['events'][0][message]['stickerID'];
-	    $user_packageID = $events['events'][0][message]['packageID']; 
+	    // $typeMessage = $events['events'][0]['message']['type'];
+	    // $userMessage = $events['events'][0]['message']['text'];
+
+	    if(isset($events['events'][0]) && array_key_exists('message',$events['events'][0])){
+        $is_message = true;
+        $typeMessage = $events['events'][0]['message']['type'];
+        $userMessage = $events['events'][0]['message']['text'];     
+        $idMessage = $events['events'][0]['message']['id']; 
+    	}
+    	
 
 	    switch ($typeMessage){
 	        case 'text':

@@ -69,6 +69,8 @@
 	            switch ($userMessage) {
 	                case "Hello" :
 	                case "hello" :
+	                case "Hi" :
+	                case "hi" :
 	                	//Emoji
 	                	$code = '10000B'; //Emoji Code
 						$bin = hex2bin(str_repeat('0', 8 - strlen($code)) . $code);
@@ -99,6 +101,11 @@
 	                    break;                                      
 	            }
 	            break;
+	        case 'sticker' :
+	        	$textReplyMessage = "Sticker!!"
+	        	$replyData = new TextMessageBuilder($textReplyMessage);
+	        	break;
+
 	        default:
 	            $textReplyMessage = json_encode($events);
 	            $replyData = new TextMessageBuilder($textReplyMessage);  

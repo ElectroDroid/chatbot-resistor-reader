@@ -133,7 +133,7 @@
                     // กำหนด path ของไฟล์ที่จะบันทึก
                     $fileFullSavePath = $botDataUserFolder.'/'.$fileNameSave;
                     file_put_contents($fileFullSavePath,$dataBinary); // ทำการบันทึกไฟล์
-                    $textReplyMessage = "$fileNameSave is saved already";
+                    $textReplyMessage = "$fileNameSave is saved already at $fileFullSavePath";
                     $replyData = new TextMessageBuilder($textReplyMessage);
                     break;
               	}

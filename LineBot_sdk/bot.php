@@ -61,12 +61,15 @@
 		$replyToken = $events['events'][0]['replyToken'];
 	    $typeMessage = $events['events'][0]['message']['type'];
 	    $userMessage = $events['events'][0]['message']['text'];
+	    $user_stickerID = $events['events'][0][message]['stickerID'];
+	    $user_packageID = $events['events'][0][message]['packageID']; 
+
 	    switch ($typeMessage){
 	        case 'text':
 	            switch ($userMessage) {
-	                case "Hello":
-
-	                	$code = '10000B';
+	                case "Hello" || "hello" :
+	                	//Emoji
+	                	$code = '10000B'; //Emoji Code
 						$bin = hex2bin(str_repeat('0', 8 - strlen($code)) . $code);
 						$emoticon =  mb_convert_encoding($bin, 'UTF-8', 'UTF-32BE');
 
@@ -74,12 +77,13 @@
 	                    $replyData = new TextMessageBuilder($textReplyMessage);
 	                    break;
 	                
-	                case "help":
+	                case ("Help" || "help") :
 	                	$textReplyMessage = "Sorry, Tang-Si is sleeping now.";
 	                
 	                	$stickerID = 1;
 	                	$packageID = 1;	
 	                	
+	                	//Multipel Message Setting
 	                	$multiMessage = new MultiMessageBuilder();
 
 	                	$multiMessage->add(new TextMessageBuilder($textReplyMessage))

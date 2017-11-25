@@ -70,20 +70,16 @@
 	                    break;
 	                
 	                case "help":
-	                	$arr_replyData = array();
-	                	$textReplyMessage = "Sorry, Tang-Si is sleeping now."
-	                	$arr_replyData[] = new TextMessageBuilder($textReplyMessage);
-	                	
+	                	$textReplyMessage = "Sorry, Tang-Si is sleeping now.";
+	                
 	                	$stickerID = 1;
-	                	$packageID = 1;
-	                	$arr_replyData[] = new StickerMessageBuilder($packageID,$stickerID);	
+	                	$packageID = 1;	
 	                	
-	                	//Multimessage replying
-						$multiMessage =     new MultiMessageBuilder;
-						foreach($arr_replyData as $arr_Reply){
-							$multiMessage->add($arr_Reply);
-						}
-						$replyData = $multiMessage;
+	                	$multiMessage = new MultiMessageBuilder();
+
+	                	$multiMessage->add(new TextMessageBuilder('textReplyMessage'))
+	                				 ->add(new StickerMessageBuilder($packageID,$stickerID));
+	                	$replyData = $multiMessage;
 	                	break;
 	                	
 	                default:

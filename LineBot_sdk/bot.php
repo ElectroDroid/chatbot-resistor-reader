@@ -108,27 +108,31 @@
                     // คำสั่ง getRawBody() ในกรณีนี้ จะได้ข้อมูลส่งกลับมาเป็น binary 
                     // เราสามารถเอาข้อมูลไปบันทึกเป็นไฟล์ได้
                     $dataBinary = $response->getRawBody(); // return binary
-                    // ดึงข้อมูลประเภทของไฟล์ จาก header
-                    $fileType = $response->getHeader('Content-Type');                           
-                    list($typeFile,$ext) = explode("/",$fileType);
-                    $ext = ($ext=='jpeg' || $ext=='jpg')?"jpg":$ext;
-                    $fileNameSave = time().".".$ext;
-                                                                          
-                    $botDataFolder = './botdata/'; // โฟลเดอร์หลักที่จะบันทึกไฟล์
-                    $botDataUserFolder = $botDataFolder.$userID; // มีโฟลเดอร์ด้านในเป็น userId อีกขั้น
-                    if(!file_exists($botDataUserFolder)) { // ตรวจสอบถ้ายังไม่มีให้สร้างโฟลเดอร์ userId
-                        mkdir($botDataUserFolder, 0777, true);
-                    }   
+                    $dataHeader = $response->getHeaders();
+        			$replyData = new TextMessageBuilder(json_encode($dataHeader));
 
-                    // กำหนด path ของไฟล์ที่จะบันทึก
-                    $fileFullSavePath = $botDataUserFolder.'/'.$fileNameSave;
-                    file_put_contents($fileFullSavePath,$dataBinary); // ทำการบันทึกไฟล์
-                    $textReplyMessage = "$fileNameSave is saved already";
-                    $replyData = new TextMessageBuilder($textReplyMessage);
+                    // // ดึงข้อมูลประเภทของไฟล์ จาก header
+                    // $fileType = $response->getHeader('Content-Type');                           
+                    // list($typeFile,$ext) = explode("/",$fileType);
+                    // $ext = ($ext=='jpeg' || $ext=='jpg')?"jpg":$ext;
+                    // $fileNameSave = time().".".$ext;
+                                                                          
+                    // $botDataFolder = './botdata/'; // โฟลเดอร์หลักที่จะบันทึกไฟล์
+                    // $botDataUserFolder = $botDataFolder.$userID; // มีโฟลเดอร์ด้านในเป็น userId อีกขั้น
+                    // if(!file_exists($botDataUserFolder)) { // ตรวจสอบถ้ายังไม่มีให้สร้างโฟลเดอร์ userId
+                    //     mkdir($botDataUserFolder, 0777, true);
+                    // }   
+
+                    // // กำหนด path ของไฟล์ที่จะบันทึก
+                    // $fileFullSavePath = $botDataUserFolder.'/'.$fileNameSave;
+                    // file_put_contents($fileFullSavePath,$dataBinary); // ทำการบันทึกไฟล์
+                    // $textReplyMessage = "$fileNameSave is saved already";
+                    // $replyData = new TextMessageBuilder($textReplyMessage);
+                    break;
               	}
                 
                 //$failMessage = json_encode($idMessage.' '.$response->getHTTPStatus() . ' ' . $response->getRawBody());
-                $failMessage = "Cann't get your image";
+                $failMessage = "Sorry, I can't save your image";
                 $replyData = new TextMessageBuilder($failMessage);  
             break;                                                      
 	        

@@ -65,7 +65,12 @@
 	        case 'text':
 	            switch ($userMessage) {
 	                case "Hello":
-	                    $textReplyMessage = "Hello! Let's me help you read resistor color bar.";
+
+	                	$code = '10000B';
+						$bin = hex2bin(str_repeat('0', 8 - strlen($code)) . $code);
+						$emoticon =  mb_convert_encoding($bin, 'UTF-8', 'UTF-32BE');
+
+	                    $textReplyMessage = "Hello! Let's me help you read resistor color bar. Type \"help\" to see how I can help you $emoticon";
 	                    $replyData = new TextMessageBuilder($textReplyMessage);
 	                    break;
 	                
@@ -77,7 +82,7 @@
 	                	
 	                	$multiMessage = new MultiMessageBuilder();
 
-	                	$multiMessage->add(new TextMessageBuilder('textReplyMessage'))
+	                	$multiMessage->add(new TextMessageBuilder($textReplyMessage))
 	                				 ->add(new StickerMessageBuilder($packageID,$stickerID));
 	                	$replyData = $multiMessage;
 	                	break;

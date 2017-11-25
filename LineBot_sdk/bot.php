@@ -101,11 +101,6 @@
 	                    break;                                      
 	            }
 	            break;
-	        case 'sticker' :
-	        	$textReplyMessage = "Sticker!!"
-	        	$replyData = new TextMessageBuilder($textReplyMessage);
-	        	break;
-
 	        default:
 	            $textReplyMessage = json_encode($events);
 	            $replyData = new TextMessageBuilder($textReplyMessage);  

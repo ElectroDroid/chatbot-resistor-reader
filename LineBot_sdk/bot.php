@@ -67,7 +67,8 @@
 	    switch ($typeMessage){
 	        case 'text':
 	            switch ($userMessage) {
-	                case "Hello" || "hello" :
+	                case "Hello" :
+	                case "hello" :
 	                	//Emoji
 	                	$code = '10000B'; //Emoji Code
 						$bin = hex2bin(str_repeat('0', 8 - strlen($code)) . $code);
@@ -77,7 +78,8 @@
 	                    $replyData = new TextMessageBuilder($textReplyMessage);
 	                    break;
 	                
-	                case ("Help" || "help") :
+	                case "Help" :
+	                case "help" :
 	                	$textReplyMessage = "Sorry, Tang-Si is sleeping now.";
 	                
 	                	$stickerID = 1;

@@ -128,7 +128,7 @@
               	}
                 
                 //$failMessage = json_encode($idMessage.' '.$response->getHTTPStatus() . ' ' . $response->getRawBody());
-                $failMessage = "Cann't get your image"
+                $failMessage = "Cann't get your image";
                 $replyData = new TextMessageBuilder($failMessage);  
                 break;                                                      
 	        default:

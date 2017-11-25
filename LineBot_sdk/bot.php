@@ -78,7 +78,7 @@
 
 	                    $textReplyMessage = "Hello! Let's me help you read resistor color bar. Type \"help\" to see how I can help you $emoticon";
 	                    $replyData = new TextMessageBuilder($textReplyMessage);
-	                    break;
+	                break;
 	                
 	                case "Help" :
 	                case "help" :
@@ -93,13 +93,14 @@
 	                	$multiMessage->add(new TextMessageBuilder($textReplyMessage))
 	                				 ->add(new StickerMessageBuilder($packageID,$stickerID));
 	                	$replyData = $multiMessage;
-	                	break;
+	               	break;
 	                	
 	                default:
 	                    $textReplyMessage = "Sorry, I don't know what are you talking about?";
 	                    $replyData = new TextMessageBuilder($textReplyMessage);
-	                    break;                                      
+	                break;                                      
 	            }
+	        break;
 	        // Receive image
 	        case (preg_match('/[image]/',$typeMessage) ? true : false) :
                 $response = $bot->getMessageContent($idMessage);
@@ -124,17 +125,17 @@
                     file_put_contents($fileFullSavePath,$dataBinary); // ทำการบันทึกไฟล์
                     $textReplyMessage = "$fileNameSave is saved already";
                     $replyData = new TextMessageBuilder($textReplyMessage);
-                    break;
               	}
                 
                 //$failMessage = json_encode($idMessage.' '.$response->getHTTPStatus() . ' ' . $response->getRawBody());
                 $failMessage = "Cann't get your image";
                 $replyData = new TextMessageBuilder($failMessage);  
-                break;                                                      
+            break;                                                      
+	        
 	        default:
 	            $textReplyMessage = json_encode($events);
 	            $replyData = new TextMessageBuilder($textReplyMessage);  
-	            break;  
+	        break;  
 	    }
 
 	    //Prepare message for replying

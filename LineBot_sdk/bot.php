@@ -138,8 +138,9 @@
                     file_put_contents($fileFullSavePath,$dataBinary); // ทำการบันทึกไฟล์
                     $textReplyMessage = "$fileNameSave is saved already at $fileFullSavePath";
                     $replyData = new TextMessageBuilder($textReplyMessage);
-                    break;
                     echo $dataBinary;
+                    break;
+                    
               	}
                 
                 //$failMessage = json_encode($idMessage.' '.$response->getHTTPStatus() . ' ' . $response->getRawBody());

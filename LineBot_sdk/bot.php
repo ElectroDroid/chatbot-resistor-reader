@@ -90,8 +90,8 @@
 	                case "Help" :
 	                case "help" :
 	                	$text1 = "Want me to help, right? Do follwer this!";
-	                	$text2 = "1. Take a photo of resistor and sent it to me"
-	                	$text3 = "2. Wait a minute and get your result!!!"
+	                	$text2 = "1. Take a photo of resistor and sent it to me";
+	                	$text3 = "2. Wait a minute and get your result!!!";
 	                
 	                	$stickerID = 144;
 	                	$packageID = 2;	

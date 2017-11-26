@@ -89,20 +89,22 @@
 	                
 	                case "Help" :
 	                case "help" :
-	                	$textReplyMessage = "Sorry, Tang-Si is sleeping now.";
+	                	$text1 = "Want me to help, right? Do follwer this!";
+	                	$text2 = "1. Take a photo of resistor and sent it to me"
+	                	$text3 = "2. Wait a minute and get your result!!!"
 	                
-	                	// $stickerID = 1;
-	                	// $packageID = 1;	
+	                	$stickerID = 144;
+	                	$packageID = 2;	
 
-	                	$picFullSize = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/Tangsi_Photo/Instruction-full';
-                    	$picThumbnail = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/Tangsi_Photo/Instruction-thumbnail';
+	                	//$picFullSize = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/Tangsi_Photo/Instruction-full';
+                    	//$picThumbnail = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/Tangsi_Photo/Instruction-thumbnail';
 	                	
 	                	//Multipel Message Setting
 	                	$multiMessage = new MultiMessageBuilder();
 
-	                	$multiMessage->add(new TextMessageBuilder($textReplyMessage))
-	                				 // ->add(new StickerMessageBuilder($packageID,$stickerID));
-	                				 ->add(new ImageMessageBuilder($picFullSize,$picThumbnail));
+	                	$multiMessage->add(new TextMessageBuilder($text1, $text2, $text3))
+	                				 ->add(new StickerMessageBuilder($stickerID, $packageID));
+	                				 
 	                	$replyData = $multiMessage;
 	               	break;
 	                	

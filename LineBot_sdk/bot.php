@@ -123,19 +123,23 @@
                     list($typeFile,$ext) = explode("/",$fileType);
                     $ext = ($ext=='jpeg' || $ext=='jpg')?"jpg":$ext;
                     $fileNameSave = time().".".$ext;
-                                                                          
-                    $botDataFolder = './botdata/'; // โฟลเดอร์หลักที่จะบันทึกไฟล์
+                    
+                    $botDataFolder = 'image';
+                    if(!file_exists($botDataFolder)) { // ตรวจสอบถ้ายังไม่มีให้สร้างโฟลเดอร์ image
+                        mkdir($botDataFolder, 0777, true);
+                    }                                                     
                     $botDataUserFolder = $botDataFolder.$userID; // มีโฟลเดอร์ด้านในเป็น userId อีกขั้น
                     if(!file_exists($botDataUserFolder)) { // ตรวจสอบถ้ายังไม่มีให้สร้างโฟลเดอร์ userId
                         mkdir($botDataUserFolder, 0777, true);
                     }   
 
                     // กำหนด path ของไฟล์ที่จะบันทึก
-                    $fileFullSavePath = $botDataUserFolder.'/'.$fileNameSave;
+                    $fileFullSavePath = $botDataFolder'/'$botDataUserFolder'/'$fileNameSave;
                     file_put_contents($fileFullSavePath,$dataBinary); // ทำการบันทึกไฟล์
                     $textReplyMessage = "$fileNameSave is saved already at $fileFullSavePath";
                     $replyData = new TextMessageBuilder($textReplyMessage);
                     break;
+                    echo $dataBinary;
               	}
                 
                 //$failMessage = json_encode($idMessage.' '.$response->getHTTPStatus() . ' ' . $response->getRawBody());

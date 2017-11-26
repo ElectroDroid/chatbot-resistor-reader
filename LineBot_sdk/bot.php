@@ -125,7 +125,7 @@
                     $ext = ($ext=='jpeg' || $ext=='jpg')?"jpg":$ext;
                     $fileNameSave = time().".".$ext;
                     
-                    $botDataFolder = 'image';
+                    $botDataFolder = 'image/';
                     if(!file_exists($botDataFolder)) { // ตรวจสอบถ้ายังไม่มีให้สร้างโฟลเดอร์ image
                         mkdir($botDataFolder, 0777, true);
                     }                                                     

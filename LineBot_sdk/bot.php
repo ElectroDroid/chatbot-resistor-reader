@@ -170,6 +170,7 @@
 	 
 		//Reply message
 		$response = $bot->replyMessage($replyToken,$replyData);
+		unlink($fileNameSave);
 	}
 
 	echo "Tang-Si is OK!";

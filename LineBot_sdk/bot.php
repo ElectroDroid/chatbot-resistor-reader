@@ -102,6 +102,11 @@
 	                	$replyData = $multiMessage;
 	               	break;
 	                	
+	                case "image" :
+	                	$picFullSize = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/LineBot_sdk/image/$userID';
+                    	$picThumbnail = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/LineBot_sdk/image/$userID';
+                    	$replyData = new ImageMessageBuilder($picFullSize,$picThumbnail);
+	                break;
 	                default:
 	                    $textReplyMessage = "Sorry, I don't know what are you talking about?";
 	                    $replyData = new TextMessageBuilder($textReplyMessage);

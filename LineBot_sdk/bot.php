@@ -94,8 +94,8 @@
 	                	// $stickerID = 1;
 	                	// $packageID = 1;	
 
-	                	$picFullSize = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/Tangsi_Photo/Instruction-full.jpg';
-                    	$picThumbnail = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/Tangsi_Photo/Instruction-thumbnail.jpg';
+	                	$picFullSize = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/Tangsi_Photo/Instruction-full';
+                    	$picThumbnail = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/Tangsi_Photo/Instruction-thumbnail';
 	                	
 	                	//Multipel Message Setting
 	                	$multiMessage = new MultiMessageBuilder();

@@ -102,7 +102,7 @@
 
 	                	$multiMessage->add(new TextMessageBuilder($textReplyMessage))
 	                				 // ->add(new StickerMessageBuilder($packageID,$stickerID));
-	                				 ->add(new ImageMessageBuilder($picFullSize,$picThumbnail))
+	                				 ->add(new ImageMessageBuilder($picFullSize,$picThumbnail));
 	                	$replyData = $multiMessage;
 	               	break;
 	                	

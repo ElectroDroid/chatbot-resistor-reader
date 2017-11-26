@@ -59,6 +59,7 @@
 	$events = json_decode($content, true);
 	if(!is_null($events)){
 		$replyToken = $events['events'][0]['replyToken'];
+		$userID = $events['events'][0]['source']['userId'];
 	    // $typeMessage = $events['events'][0]['message']['type'];
 	    // $userMessage = $events['events'][0]['message']['text'];
 
@@ -134,11 +135,10 @@
                     }   
 
                     // กำหนด path ของไฟล์ที่จะบันทึก
-                    $fileFullSavePath = $botDataFolder.'/'.$botDataUserFolder.'/'.$fileNameSave;
+                    $fileFullSavePath = $botDataUserFolder.'/'.$fileNameSave;
                     file_put_contents($fileFullSavePath,$dataBinary); // ทำการบันทึกไฟล์
                     $textReplyMessage = "$fileNameSave is saved already at $fileFullSavePath";
                     $replyData = new TextMessageBuilder($textReplyMessage);
-                    echo $dataBinary;
                     break;
                     
               	}

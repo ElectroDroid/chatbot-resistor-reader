@@ -102,11 +102,6 @@
 	                	$replyData = $multiMessage;
 	               	break;
 	                	
-	                case "image" :
-	                	$picFullSize = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/LineBot_sdk/image/$userID';
-                    	$picThumbnail = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/LineBot_sdk/image/$userID';
-                    	$replyData = new ImageMessageBuilder($picFullSize,$picThumbnail);
-	                break;
 	                default:
 	                    $textReplyMessage = "Sorry, I don't know what are you talking about?";
 	                    $replyData = new TextMessageBuilder($textReplyMessage);
@@ -142,10 +137,21 @@
                     // กำหนด path ของไฟล์ที่จะบันทึก
                     $fileFullSavePath = $botDataUserFolder.'/'.$fileNameSave;
                     file_put_contents($fileFullSavePath,$dataBinary); // ทำการบันทึกไฟล์
+
+                    $picFullSize = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/LineBot_sdk/image/$userID/$fileNameSave';
+                    $picThumbnail = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/LineBot_sdk/image/$userID/$fileNameSave';
+
                     $textReplyMessage = "$fileNameSave is saved already at $fileFullSavePath";
-                    $replyData = new TextMessageBuilder($textReplyMessage);
+
+
+                    $multiMessage = new MultiMessageBuilder();
+
+	                $multiMessage->add(new TextMessageBuilder($textReplyMessage))
+	                			 ->add(new ImageMessageBuilder($picFullSize,$picThumbnail));
+	                $replyData = $multiMessage;
+
+                    //$replyData = new TextMessageBuilder($textReplyMessage);
                     break;
-                    
               	}
                 
                 //$failMessage = json_encode($idMessage.' '.$response->getHTTPStatus() . ' ' . $response->getRawBody());

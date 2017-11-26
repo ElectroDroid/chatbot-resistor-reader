@@ -103,7 +103,7 @@
 	                	$multiMessage = new MultiMessageBuilder();
 
 	                	$multiMessage->add(new TextMessageBuilder($text1, $text2, $text3))
-	                				 ->add(new StickerMessageBuilder($stickerID, $packageID));
+	                				 ->add(new StickerMessageBuilder($packageID,$stickerID));
 	                				 
 	                	$replyData = $multiMessage;
 	               	break;

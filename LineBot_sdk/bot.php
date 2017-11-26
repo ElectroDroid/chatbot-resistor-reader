@@ -139,7 +139,7 @@
                     $textReplyMessage = "$fileNameSave is saved already at $fileFullSavePath";
                     $replyData = new TextMessageBuilder($textReplyMessage);
                     break;
-                    echo $dataBinary;
+                    //echo $dataBinary;
               	}
                 
                 //$failMessage = json_encode($idMessage.' '.$response->getHTTPStatus() . ' ' . $response->getRawBody());

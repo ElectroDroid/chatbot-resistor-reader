@@ -53,7 +53,7 @@ def filter_color(img):
 	grey_mask = cv2.inRange(hsv, minColor[8], maxColor[8])
 	white_mask = cv2.inRange(hsv, minColor[9], maxColor[9])
 
-	roi_img = [x:(yy+y)/2, xx:((yy+y)/2)+20]
+	roi_img = img[x:(yy+y)/2, xx:((yy+y)/2)+20]
 
 	for n in cond(0, 10, 1):
 		mask = cv2.inRange(hsv, minColor[n], maxColor[n])

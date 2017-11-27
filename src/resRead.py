@@ -39,10 +39,10 @@ def filter_color(hsv):
 
 	for n in cond(0, 10, 1):
 		mask = cv2.inRange(hsv, minColor[n], maxColor[n])
-		cv2.imshow('mask' ,mask)
+		#cv2.imshow('mask' ,mask)
 		#print n+1
-		cv2.waitKey(0)
-		cv2.destroyAllWindows()
+		#cv2.waitKey(0)
+		#cv2.destroyAllWindows()
 
 #------------------------------------------------------------------
 
@@ -54,32 +54,61 @@ def chkSize(img):
 	
 #------------------------------------------------------------------
 
-def drawRect(img):
-	gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-	gray = cv2.GaussianBlur(gray,(5, 5), 0)
-	_, bin = cv2.threshold(gray,120,255,1) # inverted threshold (light obj on dark bg)
-	bin = cv2.dilate(bin, None)  # fill some holes
-	bin = cv2.dilate(bin, None)
-	bin = cv2.erode(bin, None)   # dilate made our shape larger, revert that
-	bin = cv2.erode(bin, None)
-	bin, contours, hierarchy = cv2.findContours(bin, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
 
-	rc = cv2.minAreaRect(contours[0])
-	box = cv2.boxPoints(rc)
-	for p in box:
-	    	pt = (p[0],p[1])
-    		print pt
-    		cv2.circle(img,pt,5,(200,0,0),2)
-	cv2.imshow("rect", img)
-	cv2.waitKey()
+def getMaxCoordinate(x, y, x_max, y_max):
+	if x > x_max and y > y_max:
+		x_max = x
+		y_max = y
+
+	return x_max, y_max
+	
+#------------------------------------------------------------------
+
+def drawRect(img):
+	#find resistor's color >> light blue
+	hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+	lower = np.array([90, 51, 217])
+	upper = np.array([103, 102, 230])
+	mask = cv2.inRange(hsv, lower, upper)
+	#output = cv2.bitwise_and(img, hsv, mask=mask)
+
+	ret,thresh = cv2.threshold(mask, 40, 255, 0)
+	_,contours,_ = cv2.findContours(thresh, 1, 2)
+
+	#may be got some problem with coordinate...
+	x_max = 0
+	y_max = 0 
+	x = [] 
+	y = []
+
+	for c in contours:
+			rect = cv2.boundingRect(c)
+			if rect[2] < 100 or rect[3] < 100:
+				continue
+			print cv2.contourArea(c)
+			x1,y1,x2,y2 = rect
+			x.append(x1)
+			y.append(y1)
+			x_max, y_max = getMaxCoordinate(x2+x1, y2+y1, x_max, y_max)			
+			
+			
+			print x1
+	print x_max
+
+	cv2.rectangle(img,(x[1],y[1]),(x_max,y_max),(0,0,255),2)
+	cv2.line(img,(x[1],(y[1]+y_max)/2),(x_max,(y[1]+y_max)/2),(0,0,255),1)
+	cv2.putText(img,'Resistor',(x[1]+10,y_max),0,0.5,(0,0,255))
+	# show the images
+	cv2.imshow("Result", img)
+	cv2.waitKey(0)
 
 #------------------------------------------------------------------
 
-img = cv2.imread('img/R2.jpg')
+img = cv2.imread('../img/R2.jpg')
 
 img = chkSize(img)
-drawRect(img)
 hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+drawRect(img)
 filter_color(hsv)
 
 #------------------------------------------------------------------

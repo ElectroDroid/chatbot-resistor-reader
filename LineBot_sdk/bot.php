@@ -144,19 +144,19 @@
                     $fileFullSavePath = $botDataUserFolder.'/'.$fileNameSave;
                     file_put_contents($fileFullSavePath,$dataBinary); // ทำการบันทึกไฟล์
 
-                    $picFullSize = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/LineBot_sdk/image/$userID/$fileNameSave';
-                    $picThumbnail = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/LineBot_sdk/image/$userID/$fileNameSave';
+                    //$picFullSize = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/LineBot_sdk/image/$userID/$fileNameSave';
+                    //$picThumbnail = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/LineBot_sdk/image/$userID/$fileNameSave';
 
-                    $textReplyMessage = "$fileNameSave is saved already at $fileFullSavePath";
+                    $textReplyMessage = "I've gotten your image already. Please, wait for a while to get your result.";
 
 
-                    $multiMessage = new MultiMessageBuilder();
+                    //$multiMessage = new MultiMessageBuilder();
 
-	                $multiMessage->add(new TextMessageBuilder($textReplyMessage))
-	                			 ->add(new ImageMessageBuilder($picFullSize,$picThumbnail));
-	                $replyData = $multiMessage;
+	                //$multiMessage->add(new TextMessageBuilder($textReplyMessage))
+	                //			 ->add(new ImageMessageBuilder($picFullSize,$picThumbnail));
+	                //$replyData = $multiMessage;
 
-                    //$replyData = new TextMessageBuilder($textReplyMessage);
+                    $replyData = new TextMessageBuilder($textReplyMessage);
                     break;
               	}
                 

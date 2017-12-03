@@ -161,7 +161,7 @@
               	}
                 
                 //$failMessage = json_encode($idMessage.' '.$response->getHTTPStatus() . ' ' . $response->getRawBody());
-                $failMessage = "Sorry, I can't save your image";
+                $failMessage = "Sorry, I can't save your image. Please send a jpg or jpeg image";
                 $replyData = new TextMessageBuilder($failMessage);  
             break;                                                      
 	        

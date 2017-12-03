@@ -10,7 +10,15 @@ def cond(start, end, step):
 
 #------------------------------------------------------------------
 
-def filter_color(hsv):
+def filter_color(img):
+
+	x_max, x_min, y_max, y_min, img = findArea(img)
+	print x_max    #max
+	print x_min    #min
+	img_tmp = img.copy();
+	drawRect(x_max, x_min, y_max, y_min, img, "Resistor")
+	
+	hsv = cv2.cvtColor(img_tmp, cv2.COLOR_BGR2HSV)
 	minColor = np.array([
 		[0, 0, 0],								#black /
 		[3, 170, 100],							#brown /
@@ -35,14 +43,54 @@ def filter_color(hsv):
 		[8, 38, 128],							#grey
 		[0, 0, 255]])							#white
 
-	n_min = 10									#n_min = n_max
+	
+	colorName = np.array([
+		"black",							
+		"brown",							
+		"red",							
+		"orange",							
+		"yellow",							
+		"green",							
+		"blue",						
+		"purple",						
+		"grey",							
+		"white"])
+
+	color = np.array([
+		[0, 0, 0],								#black /
+		[100, 170, 3],							#brown /
+		[0, 0, 255],							#red /--- nope
+		[160, 175, 11],							#orange /
+		[157, 192, 21],							#yellow /
+		[0, 0, 255],							#green
+		[0, 255, 0],							#blue
+		[75, 68, 144],							#purple
+		[73, 0, 0],								#grey
+		[255, 255, 255]])		
+	
 
 	for n in cond(0, 10, 1):
 		mask = cv2.inRange(hsv, minColor[n], maxColor[n])
-		cv2.imshow('mask' ,mask)
-		#print n+1
-		cv2.waitKey(0)
-		cv2.destroyAllWindows()
+
+		output = cv2.bitwise_and(img_tmp, hsv, mask=mask)
+		ret,thresh = cv2.threshold(mask, 40, 255, 0)
+		_,contours,_ = cv2.findContours(thresh, 1, 2)
+		print n
+
+		for c in contours:
+			x,y,w,h = cv2.boundingRect(c)
+			
+			if w < 15 or h < 30 or w > 40:
+				continue
+
+			print colorName[n]
+			print n
+			cv2.rectangle(img,(x,y),(x+w,y+h),color[n],2)
+		
+		print "-----"
+
+	cv2.imshow('Result' ,img)
+	cv2.waitKey(0)
 
 #------------------------------------------------------------------
 
@@ -51,36 +99,58 @@ def chkSize(img):
 
 	if(height >= 800 or width >= 600):
 		return cv2.resize(img, (0, 0), fx=0.5, fy=0.5)
+
+#------------------------------------------------------------------
+
+def findArea(img):
+	#find resistor's color >> light blue
+	hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+	lower = np.array([87, 51, 170])
+	upper = np.array([103, 166, 230])
+	#lower = np.array([13, 64, 210])
+	#upper = np.array([18, 102, 245])
+	mask = cv2.inRange(hsv, lower, upper)
+	output = cv2.bitwise_and(img, hsv, mask=mask)
+
+	ret,thresh = cv2.threshold(mask, 40, 255, 0)
+	_,contours,_ = cv2.findContours(thresh, 1, 2)
+
 	
+	x_n = [] 
+	y_n = []
+	x_x = [] 
+	y_x = []
+
+	for c in contours:
+			x,y,w,h = cv2.boundingRect(c)
+			
+			if w < 50 or h < 50:
+				continue
+			
+			x_n.append(x)
+			y_n.append(y)
+			x_x.append(x+w)
+			y_x.append(y+h)
+
+	x_max = max(x_x)
+	y_max = max(y_x)
+	x_min = min(x_n)
+	y_min = min(y_n)	
+
+	return x_max, x_min, y_max, y_min, img
+
+#------------------------------------------------------------------
+def drawRect(x_max, x_min, y_max, y_min, img, text):
+	cv2.rectangle(img,(x_min,y_min),(x_max,y_max),(0,0,255),2)
+	cv2.line(img,(x_min,(y_min+y_max)/2),(x_max,(y_min+y_max)/2),(0,0,255),1)
+	cv2.putText(img,text,(x_max+10,y_max),0,0.5,(0,0,255))
 #------------------------------------------------------------------
 
-def drawRect(img):
-	gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-	gray = cv2.GaussianBlur(gray,(5, 5), 0)
-	_, bin = cv2.threshold(gray,120,255,1) # inverted threshold (light obj on dark bg)
-	bin = cv2.dilate(bin, None)  # fill some holes
-	bin = cv2.dilate(bin, None)
-	bin = cv2.erode(bin, None)   # dilate made our shape larger, revert that
-	bin = cv2.erode(bin, None)
-	bin, contours, hierarchy = cv2.findContours(bin, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
-
-	rc = cv2.minAreaRect(contours[0])
-	box = cv2.boxPoints(rc)
-	for p in box:
-	    	pt = (p[0],p[1])
-    		print pt
-    		cv2.circle(img,pt,5,(200,0,0),2)
-	cv2.imshow("rect", img)
-	cv2.waitKey()
-
-#------------------------------------------------------------------
-
-img = cv2.imread('img/R2.jpg')
+img = cv2.imread('../img/R2.jpg')
 
 img = chkSize(img)
-drawRect(img)
-hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
-filter_color(hsv)
+
+filter_color(img)
 
 #------------------------------------------------------------------
 

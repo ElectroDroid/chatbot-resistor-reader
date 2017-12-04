@@ -148,7 +148,7 @@
                     //$picThumbnail = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/LineBot_sdk/image/$userID/$fileNameSave';
 
                     $textReplyMessage = "I've gotten your image already. Please, wait for a while to get your result.";
-                    $text2 = "100k +/-5%"
+                    $text2 = "100k +/-5%";
 
                     $multiMessage = new MultiMessageBuilder();
 

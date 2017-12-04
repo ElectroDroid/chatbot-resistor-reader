@@ -49,7 +49,7 @@ def filter_color(img):
 		[120, 255, 255],						#blue
 		[175, 255, 255],						#purple
 		[8, 38, 128],							#grey
-		[0, 0, 255],							#white
+		[22, 40, 255],							#white
 		[19, 186, 216]])						#gold	
 
 	
@@ -235,7 +235,7 @@ def drawRect(x_max, x_min, y_max, y_min, img, text):
 
 #------------------------------------------------------------------
 
-img = cv2.imread('../img/R7.jpg')   # 5 7 10
+img = cv2.imread('../img/R11.jpg')   # 5 7 10
 
 img = chkSize(img)
 

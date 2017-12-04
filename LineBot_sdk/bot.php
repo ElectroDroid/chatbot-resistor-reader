@@ -152,7 +152,7 @@
 
                     $multiMessage = new MultiMessageBuilder();
 
-                    $multiMessage->add(new TextMessageBuilder($text1, $text2))
+                    $multiMessage->add(new TextMessageBuilder($text1, $text2));
 	                //$multiMessage->add(new TextMessageBuilder($textReplyMessage))
 	                //			 ->add(new ImageMessageBuilder($picFullSize,$picThumbnail));
 	                $replyData = $multiMessage;

@@ -10,6 +10,7 @@
 	// Bot Setting
 	require_once 'bot_settings.php';
 	 
+	require_once '../src/resRead.py';
 	// Database Setting
 	//require_once("dbconnect.php");
 
@@ -144,11 +145,16 @@
                     $fileFullSavePath = $botDataUserFolder.'/'.$fileNameSave;
                     file_put_contents($fileFullSavePath,$dataBinary); // ทำการบันทึกไฟล์
 
+                    $python = "../src/resRead.py";
+
+                    exec($python);
+
+
                     //$picFullSize = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/LineBot_sdk/image/$userID/$fileNameSave';
                     //$picThumbnail = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/LineBot_sdk/image/$userID/$fileNameSave';
 
                     $text1 = "I've gotten your image already. Please, wait for a while to get your result.";
-                    $text2 = "100000 ohm";
+                    //$text2 = "100000 ohm";
 
                     $multiMessage = new MultiMessageBuilder();
 

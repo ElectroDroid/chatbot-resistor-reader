@@ -20,19 +20,19 @@ def cond2(start, end, step):
 def filter_color(img):
 
 	x_max, x_min, y_max, y_min, img = findArea(img)
-	print x_max    #max
-	print x_min    #min
+	#print x_max    #max
+	#print x_min    #min
 	img_tmp = img.copy();
 	
 	
 	hsv = cv2.cvtColor(img_tmp, cv2.COLOR_BGR2HSV)
 	minColor = np.array([
 		[0, 0, 0],								#black /
-		[3, 170, 100],							#brown /
-		[6, 180, 115],							#red /
+		[0, 150, 77],							#brown /
+		[0, 255, 183],							#red /
 		[11, 175, 160],							#orange /
 		[21, 192, 157],							#yellow /
-		[65, 106, 70],							#green
+		[43, 106, 70],							#green
 		[98, 136, 86],							#blue
 		[144, 68, 75],							#purple
 		[0, 0, 73],								#grey
@@ -41,13 +41,13 @@ def filter_color(img):
 
 	maxColor = np.array([
 		[180, 153, 77],							#black /
-		[10, 230, 120],							#brown /
-		[7, 255, 255],							#red /
+		[10, 255, 255],							#brown /
+		[0, 255, 255],							#red /
 		[15, 255, 255],							#orange /
 		[30, 255, 255],							#yellow /
 		[60, 255, 255],							#green
 		[120, 255, 255],						#blue
-		[150, 255, 255],						#purple
+		[175, 255, 255],						#purple
 		[8, 38, 128],							#grey
 		[0, 0, 255],							#white
 		[19, 186, 216]])						#gold	
@@ -87,6 +87,8 @@ def filter_color(img):
 
 	for n in cond(0, 10, 1):
 		mask = cv2.inRange(hsv, minColor[n], maxColor[n])
+		#cv2.imshow('Result' ,mask)
+		#cv2.waitKey(0)
 
 		output = cv2.bitwise_and(img_tmp, hsv, mask=mask)
 		ret,thresh = cv2.threshold(mask, 40, 255, 0)
@@ -95,7 +97,7 @@ def filter_color(img):
 		for c in contours:
 			x,y,w,h = cv2.boundingRect(c)
 			
-			if w < 15 or h < 35 or w > 40:
+			if w < 10 or h < 35 or w > 40:
 				continue
 
 			print colorName[n]
@@ -103,23 +105,26 @@ def filter_color(img):
 			
 			if x >= x_min and x+w < x_max and y >= y_min and y+h < y_max:
 				cv2.rectangle(img,(x,y),(x+w,y+h),color[n],2)
+				#cv2.imshow('Result' ,img)
+				#cv2.waitKey(0)
 				cX,cY = findPosition(img_tmp, c)
 				colorX.append(cX)
-				#colorY.append(cY)
 				minX.append(x)
 				maxX.append(x+w)
 				colorN.append(n)
-				print x
-				print x+w
-				#print cv2.contourArea(c)
+				#print colorName[n]
+
 			
 		print "-----"
 
 	value = calculate(colorX, minX, maxX, colorN)
-
-	drawRect(x_max, x_min, y_max, y_min, img, "Resistor")
-	cv2.imshow('Result' ,img)
+	ans = str(value)+" ohm"
+	#ans = "ans"
+	drawRect(x_max, x_min, y_max, y_min, img, ans)
+	cv2.imshow('Result' ,img)	
+	#cv2.putText(img,ans,(x_max+10,y_max),0,0.5,(0,0,255))
 	cv2.waitKey(0)
+	
 	print value
 
 #------------------------------------------------------------------
@@ -157,7 +162,7 @@ def calculate(colorX, minX, maxX, colorN):
 		#print colorN[i]
 
 	order = sorted(order, key=getKey)
-	print order
+	#print order
 	
 	str_value = order[0][1] + order[1][1]
 	value = int(str_value) * multiplier[order[2][1]]
@@ -174,8 +179,10 @@ def getKey(item):
 def chkSize(img):
 	height, width, channels = img.shape
 
-	if(height >= 800 or width >= 600):
+	if(height > 800 or width > 600):
 		return cv2.resize(img, (0, 0), fx=0.5, fy=0.5)
+	else:
+		return img
 
 #------------------------------------------------------------------
 
@@ -183,9 +190,11 @@ def findArea(img):
 	hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 	#lower = np.array([87, 51, 170])
 	#upper = np.array([103, 166, 230])
-	lower = np.array([13, 64, 210])
-	upper = np.array([18, 102, 245])
+	lower = np.array([10, 64, 110]) 
+	upper = np.array([20, 150, 230])  
 	mask = cv2.inRange(hsv, lower, upper)
+	#cv2.imshow('Result' ,mask)
+	#cv2.waitKey(0)
 	output = cv2.bitwise_and(img, hsv, mask=mask)
 
 	ret,thresh = cv2.threshold(mask, 40, 255, 0)
@@ -199,18 +208,22 @@ def findArea(img):
 	for c in contours:
 			x,y,w,h = cv2.boundingRect(c)
 			
-			if w < 50 or h < 50:
+			if w < 15 or h < 50:
 				continue
 			
 			x_n.append(x)
 			y_n.append(y)
 			x_x.append(x+w)
 			y_x.append(y+h)
+			#cv2.rectangle(img,(x,y),(x+w,y+h),(0,0,255),2)
 
 	x_max = max(x_x)
 	y_max = max(y_x)
 	x_min = min(x_n)
 	y_min = min(y_n)
+	#cv2.rectangle(img,(x_min,y_min),(x_max,y_max),(0,0,255),2)
+	#cv2.imshow('Result' ,img)
+	#cv2.waitKey(0)
 
 	return x_max, x_min, y_max, y_min, img
 
@@ -218,12 +231,11 @@ def findArea(img):
 
 def drawRect(x_max, x_min, y_max, y_min, img, text):
 	cv2.rectangle(img,(x_min,y_min),(x_max,y_max),(0,0,255),2)
-	#cv2.line(img,(x_min,(y_min+y_max)/2),(x_max,(y_min+y_max)/2),(0,0,255),1)
 	cv2.putText(img,text,(x_max+10,y_max),0,0.5,(0,0,255))
 
 #------------------------------------------------------------------
 
-img = cv2.imread('../img/R5.jpg')
+img = cv2.imread('../img/R7.jpg')   # 5 7 10
 
 img = chkSize(img)
 

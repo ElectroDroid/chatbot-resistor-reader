@@ -147,12 +147,13 @@
                     //$picFullSize = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/LineBot_sdk/image/$userID/$fileNameSave';
                     //$picThumbnail = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/LineBot_sdk/image/$userID/$fileNameSave';
 
-                    $textReplyMessage = "I've gotten your image already. Please, wait for a while to get your result.";
+                    $text1 = "I've gotten your image already. Please, wait for a while to get your result.";
                     $text2 = "100k +/-5%";
 
                     $multiMessage = new MultiMessageBuilder();
 
-                    $multiMessage->add(new TextMessageBuilder($text1, $text2));
+                    $multiMessage->add(new TextMessageBuilder($text1));
+                    			 ->add(new TextMessageBuilder($text2));
 	                //$multiMessage->add(new TextMessageBuilder($textReplyMessage))
 	                //			 ->add(new ImageMessageBuilder($picFullSize,$picThumbnail));
 	                $replyData = $multiMessage;

@@ -145,10 +145,18 @@
                     $fileFullSavePath = $botDataUserFolder.'/'.$fileNameSave;
                     file_put_contents($fileFullSavePath,$dataBinary); // ทำการบันทึกไฟล์
 
-                    $python = "../src/resRead.py";
 
-                    exec($python);
+                    // This is the data you want to pass to Python
+					$data = $fileNameSave;
 
+					// Execute the python script with the JSON data
+					$result = shell_exec('python ../src/test.py' . escapeshellarg(json_encode($data)));
+
+					// Decode the result
+					$text2 = json_decode($result, true);
+
+					// This will contain: array('status' => 'Yes!')
+					var_dump($resultData);
 
                     //$picFullSize = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/LineBot_sdk/image/$userID/$fileNameSave';
                     //$picThumbnail = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/LineBot_sdk/image/$userID/$fileNameSave';
@@ -184,7 +192,7 @@
 	 
 		//Reply message
 		$response = $bot->replyMessage($replyToken,$replyData);
-		unlink($fileFullSavePath);
+		//unlink($fileFullSavePath);
 	}
 
 	echo "Tang-Si is OK!";

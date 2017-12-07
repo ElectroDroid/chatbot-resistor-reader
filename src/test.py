@@ -8,4 +8,4 @@ cv_version = cv2.__version__
 
 
 
-print 'Path of an image: ' + result
+print "Path of an image: %s" % result

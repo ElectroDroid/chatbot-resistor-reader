@@ -146,10 +146,10 @@
                     file_put_contents($fileFullSavePath,$dataBinary); // ทำการบันทึกไฟล์
 
 
-                	//$path = $fileFullSavePath;
-    				//$value = exec("cv2 && python ../src/resRead.py $path");
-    				$item = 'python';
-    				$value = exec("cv && python ../src/test.py $item");
+                	$path = $fileFullSavePath;
+    				$value = exec("cv2 && python ../src/resRead.py $path");
+    				//$item = 'python';
+    				//$value = exec("cv && python ../src/test.py $item");
 
                     //$picFullSize = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/LineBot_sdk/image/$userID/$fileNameSave';
                     //$picThumbnail = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/LineBot_sdk/image/$userID/$fileNameSave';

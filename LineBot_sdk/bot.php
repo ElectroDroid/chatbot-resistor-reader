@@ -146,8 +146,8 @@
                     file_put_contents($fileFullSavePath,$dataBinary); // ทำการบันทึกไฟล์
 
 
-                	$item='example';
-    				$tmp = exec("python ../src/test.py .$item");
+                	$item = $fileNameSave;
+    				$tmp = exec("python ../src/test.py $item");
     				echo $tmp;
 
                     //$picFullSize = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/LineBot_sdk/image/$userID/$fileNameSave';

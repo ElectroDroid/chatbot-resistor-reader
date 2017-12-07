@@ -150,13 +150,13 @@
 					$data = $fileNameSave;
 
 					// Execute the python script with the JSON data
-					$result = shell_exec('/usr/bin/python ../src/test.py' . escapeshellarg(json_encode($data)));
+					$result = shell_exec('/usr/bin/python ../src/test.py' .$data);
 
 					// Decode the result
-					$text2 = json_decode($result, true);
+					$text2 = $result;
 
 					// This will contain: array('status' => 'Yes!')
-					var_dump($resultData);
+					var_dump($result);
 
                     //$picFullSize = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/LineBot_sdk/image/$userID/$fileNameSave';
                     //$picThumbnail = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/LineBot_sdk/image/$userID/$fileNameSave';

@@ -146,15 +146,16 @@
                     file_put_contents($fileFullSavePath,$dataBinary); // ทำการบันทึกไฟล์
 
 
-                	$item = $fileNameSave;
-    				$tmp = exec("python ../src/test.py $item");
-    				echo $tmp;
+                	$path = $fileFullSavePath;
+    				//$tmp = exec("python ../src/test.py $item");
+    				$value = exec("python ../src/resRead.py $path");
+    				echo $path + '/n' $value;
 
                     //$picFullSize = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/LineBot_sdk/image/$userID/$fileNameSave';
                     //$picThumbnail = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/LineBot_sdk/image/$userID/$fileNameSave';
 
                     $text1 = "I've gotten your image already. Please, wait for a while to get your result.";
-                    $text2 = $tmp;
+                    $text2 = $value;
 
                     $multiMessage = new MultiMessageBuilder();
 

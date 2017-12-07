@@ -1,5 +1,10 @@
 import numpy as np
 import cv2
+import sys
+
+#------------------------------------------------------------------
+path = sys.argv[1]
+
 
 #------------------------------------------------------------------
 
@@ -235,7 +240,8 @@ def drawRect(x_max, x_min, y_max, y_min, img, text):
 
 #------------------------------------------------------------------
 
-img = cv2.imread('../img/R11.jpg')   # 5 7 10
+#img = cv2.imread('../img/R11.jpg')   # 5 7 10
+img = cv2.imread('../LineBot_sdk/' + path)
 
 img = chkSize(img)
 

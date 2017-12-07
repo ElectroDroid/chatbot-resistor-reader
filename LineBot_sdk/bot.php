@@ -149,7 +149,7 @@
                 	$path = $fileFullSavePath;
     				//$tmp = exec("python ../src/test.py $item");
     				$value = exec("python ../src/resRead.py $path");
-    				echo $path + '/n' $value;
+    				
 
                     //$picFullSize = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/LineBot_sdk/image/$userID/$fileNameSave';
                     //$picThumbnail = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/LineBot_sdk/image/$userID/$fileNameSave';

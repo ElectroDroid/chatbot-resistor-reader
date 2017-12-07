@@ -10,7 +10,7 @@
 	// Bot Setting
 	require_once 'bot_settings.php';
 	 
-	require_once '../src/resRead.py';
+	//require_once '../src/resRead.py';
 	// Database Setting
 	//require_once("dbconnect.php");
 
@@ -173,6 +173,7 @@
 	                $replyData = $multiMessage;
 
                     //$replyData = new TextMessageBuilder($textReplyMessage);
+                    echo "Recived image";
                     break;
               	}
                 

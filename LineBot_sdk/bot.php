@@ -150,7 +150,7 @@
 					$data = $fileNameSave;
 
 					// Execute the python script with the JSON data
-					$result = shell_exec('python ../src/test.py' . escapeshellarg(json_encode($data)));
+					$result = shell_exec('/usr/bin/python ../src/test.py' . escapeshellarg(json_encode($data)));
 
 					// Decode the result
 					$text2 = json_decode($result, true);

@@ -146,23 +146,24 @@
                     file_put_contents($fileFullSavePath,$dataBinary); // ทำการบันทึกไฟล์
 
 
-                    // This is the data you want to pass to Python
-					$data = $fileNameSave;
+     //                // This is the data you want to pass to Python
+					// $data = $fileNameSave;
 
-					// Execute the python script with the JSON data
-					$result = shell_exec('/usr/bin/python ../src/test.py' .$data);
+					// // Execute the python script with the JSON data
+					// $result = shell_exec('/usr/bin/python ../src/test.py' .$data);
 
-					// Decode the result
-					$text2 = $result;
+					// // Decode the result
+					// $text2 = $result;
 
-					// This will contain: array('status' => 'Yes!')
-					var_dump($result);
+					// // This will contain: array('status' => 'Yes!')
+					// var_dump($result);
+					echo "Recived image";
 
                     //$picFullSize = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/LineBot_sdk/image/$userID/$fileNameSave';
                     //$picThumbnail = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/LineBot_sdk/image/$userID/$fileNameSave';
 
                     $text1 = "I've gotten your image already. Please, wait for a while to get your result.";
-                    //$text2 = "100000 ohm";
+                    $text2 = "100000 ohm";
 
                     $multiMessage = new MultiMessageBuilder();
 
@@ -173,7 +174,7 @@
 	                $replyData = $multiMessage;
 
                     //$replyData = new TextMessageBuilder($textReplyMessage);
-                    echo "Recived image";
+                    
                     break;
               	}
                 

@@ -147,9 +147,9 @@
 
 
                 	$path = $fileFullSavePath;
-    				$value = exec("cv2 && python ../src/resRead.py $path");
+    				//$value = exec("cv2 && python ../src/resRead.py $path");
     				//$item = 'python';
-    				//$value = exec("cv && python ../src/test.py $item");
+    				$value = exec("cv && python ../src/test.py $path");
 
                     //$picFullSize = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/LineBot_sdk/image/$userID/$fileNameSave';
                     //$picThumbnail = 'https://tangsibot.scm.azurewebsites.net/dev/wwwroot/LineBot_sdk/image/$userID/$fileNameSave';

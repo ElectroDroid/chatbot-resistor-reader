@@ -6,4 +6,6 @@ import cv2
 result = sys.argv[1]
 cv_version = cv2.__version__
 
-print cv_version
+
+
+print 'Path of an image: ' + result

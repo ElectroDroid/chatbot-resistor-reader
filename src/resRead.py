@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import numpy as np
 import cv2
 import sys
@@ -105,7 +107,7 @@ def filter_color(img):
 			if w < 10 or h < 35 or w > 40:
 				continue
 
-			print colorName[n]
+		#	print colorName[n]
 
 			
 			if x >= x_min and x+w < x_max and y >= y_min and y+h < y_max:
@@ -120,7 +122,7 @@ def filter_color(img):
 				#print colorName[n]
 
 			
-		print "-----"
+		#print "-----"
 
 	value = calculate(colorX, minX, maxX, colorN)
 	ans = str(value)+" ohm"

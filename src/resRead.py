@@ -238,9 +238,9 @@ img = cv2.imread('../LineBot_sdk/' + path)
 
 img = chkSize(img)
 
-ans = filter_color(img)
+value = filter_color(img)
 
-print ans
+print value
 
 #------------------------------------------------------------------
 

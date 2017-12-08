@@ -1,13 +1,13 @@
 #!/usr/bin/env python
-
+import cv2
 import numpy as np
-#import cv2
-import sys
+
+#import sys
 
 #------------------------------------------------------------------
-sitepackage = "D:\home\site\wwwroot\libs"
-path = sys.argv[1]
-sys.path.append(sitepackage)
+#sitepackage = "D:\home\site\wwwroot\libs"
+#path = sys.argv[1]
+#sys.path.append(sitepackage)
 
 #------------------------------------------------------------------
 
@@ -21,8 +21,6 @@ def cond(start, end, step):
 def filter_color(img):
 
 	x_max, x_min, y_max, y_min, img = findArea(img)
-	#print x_max    #max
-	#print x_min    #min
 	img_tmp = img.copy();	
 	
 	hsv = cv2.cvtColor(img_tmp, cv2.COLOR_BGR2HSV)
@@ -120,10 +118,9 @@ def filter_color(img):
 	#ans = "ans"
 	drawRect(x_max, x_min, y_max, y_min, img, ans)
 	cv2.imshow('Result' ,img)	
-	#cv2.putText(img,ans,(x_max+10,y_max),0,0.5,(0,0,255))
 	cv2.waitKey(0)
 	
-	return value
+	print value
 
 #------------------------------------------------------------------
 
@@ -136,7 +133,6 @@ def findPosition(img, c):
 #------------------------------------------------------------------
 
 def calculate(colorX, minX, maxX, colorN):
-	#value = n;
 	multiplier = np.array([
 		1,								#black 
 		10,								#brown 
@@ -188,8 +184,8 @@ def findArea(img):
 	hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 	#lower = np.array([87, 51, 170])
 	#upper = np.array([103, 166, 230])
-	lower = np.array([10, 64, 110]) 
-	upper = np.array([20, 150, 230])  
+	lower = np.array([10, 64, 0]) 
+	upper = np.array([20, 150, 255])  
 	mask = cv2.inRange(hsv, lower, upper)
 	#cv2.imshow('Result' ,mask)
 	#cv2.waitKey(0)
@@ -233,19 +229,12 @@ def drawRect(x_max, x_min, y_max, y_min, img, text):
 
 #------------------------------------------------------------------
 
-#img = cv2.imread('../img/R11.jpg')   # 5 7 10
-img = cv2.imread('../LineBot_sdk/' + path)
-
+img = cv2.imread('img/R5.jpg')   # 5 7 10
+#img = cv2.imread('../LineBot_sdk/' + path)
 img = chkSize(img)
-
-value = filter_color(img)
-
-print value
+filter_color(img)
 
 #------------------------------------------------------------------
-
-
-
 
 ## silver-gold -------------------------------------------------------
 
@@ -256,4 +245,3 @@ print value
 #lower_gold = np.array([110,50,50])
 #upper_gold = np.array([130,255,255])
 #mask12 = cv2.inRange(hsv, lower_gold, upper_gold)
-

@@ -7,7 +7,8 @@ sitepackage = "D:\home\site\wwwroot\libs"
 #sitepackage = "..\libs"
 sys.path.append(sitepackage)
 
-result = sys.argv[1]
-#cv_version = cv2.__version__
+#result = sys.argv[1]
+cv_version = cv2.__version__
 
-print result
+#print result
+print cv_version

@@ -119,7 +119,7 @@ def filter_color(img):
 	cv2.imshow('Result' ,img)	
 	cv2.waitKey(0)
 	
-	print value
+	print ans
 
 #------------------------------------------------------------------
 

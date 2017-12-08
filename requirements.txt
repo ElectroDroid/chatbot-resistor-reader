@@ -11,3 +11,4 @@ stevedore==1.27.1
 urllib3==1.22
 virtualenv==15.1.0
 virtualenvwrapper==4.8.2
+azure==0.8.4

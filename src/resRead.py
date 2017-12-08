@@ -7,7 +7,7 @@ import sys
 sitepackage = "D:\home\site\wwwroot\libs"
 path = sys.argv[1]
 sys.path.append(sitepackage)
-
+#
 #------------------------------------------------------------------
 
 def cond(start, end, step):
@@ -228,8 +228,8 @@ def drawRect(x_max, x_min, y_max, y_min, img, text):
 
 #------------------------------------------------------------------
 
-img = cv2.imread('img/R5.jpg')   # 5 7 10
-#img = cv2.imread('../LineBot_sdk/' + path)
+#img = cv2.imread('../img/R5.jpg')   # 5 7 10
+img = cv2.imread(path)
 img = chkSize(img)
 filter_color(img)
 

@@ -1,13 +1,12 @@
 #!/usr/bin/env python
-import cv2
+#import cv2
 import numpy as np
-
-#import sys
+import sys
 
 #------------------------------------------------------------------
-#sitepackage = "D:\home\site\wwwroot\libs"
-#path = sys.argv[1]
-#sys.path.append(sitepackage)
+sitepackage = "D:\home\site\wwwroot\libs"
+path = sys.argv[1]
+sys.path.append(sitepackage)
 
 #------------------------------------------------------------------
 

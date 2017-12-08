@@ -10,4 +10,4 @@ sys.path.append(sitepackage)
 result = sys.argv[1]
 cv_version = cv2.__version__
 
-print cv_version
+print result

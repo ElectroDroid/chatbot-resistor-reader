@@ -1,6 +1,5 @@
 certifi==2017.11.5
 chardet==3.0.4
-future==0.16.0
 idna==2.6
 line-bot-sdk==1.5.0
 numpy==1.11.0
@@ -10,7 +9,6 @@ pyserial==3.4
 requests==2.18.4
 six==1.11.0
 stevedore==1.27.1
-unity-lens-photos==1.0
 urllib3==1.22
 virtualenv==15.1.0
 virtualenv-clone==0.2.6

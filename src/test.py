@@ -3,9 +3,9 @@
 import sys
 import cv2
 
-#sitepackage = "D:\home\site\wwwroot\libs"
+sitepackage = "D:\home\site\wwwroot\libs"
 
-sitepackage = "..\libs"
+#sitepackage = "..\libs"
 sys.path.append(sitepackage)
 
 result = sys.argv[1]

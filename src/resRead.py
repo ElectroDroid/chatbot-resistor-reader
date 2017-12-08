@@ -7,21 +7,14 @@ import sys
 #------------------------------------------------------------------
 sitepackage = "D:\home\site\wwwroot\libs"
 path = sys.argv[1]
-
+sys.path.append(sitepackage)
 
 #------------------------------------------------------------------
 
 def cond(start, end, step):
 	while start < end:
 		yield start
-		start   += step
-
-#------------------------------------------------------------------
-
-def cond2(start, end, step):
-	while start <= end:
-		yield start
-		start   += step
+		start += step
 
 #------------------------------------------------------------------
 
@@ -30,8 +23,7 @@ def filter_color(img):
 	x_max, x_min, y_max, y_min, img = findArea(img)
 	#print x_max    #max
 	#print x_min    #min
-	img_tmp = img.copy();
-	
+	img_tmp = img.copy();	
 	
 	hsv = cv2.cvtColor(img_tmp, cv2.COLOR_BGR2HSV)
 	minColor = np.array([
@@ -59,7 +51,6 @@ def filter_color(img):
 		[8, 38, 128],							#grey
 		[22, 40, 255],							#white
 		[19, 186, 216]])						#gold	
-
 	
 	colorName = np.array([
 		"black",
@@ -109,7 +100,6 @@ def filter_color(img):
 				continue
 
 		#	print colorName[n]
-
 			
 			if x >= x_min and x+w < x_max and y >= y_min and y+h < y_max:
 				cv2.rectangle(img,(x,y),(x+w,y+h),color[n],2)
@@ -133,7 +123,7 @@ def filter_color(img):
 	#cv2.putText(img,ans,(x_max+10,y_max),0,0.5,(0,0,255))
 	cv2.waitKey(0)
 	
-	print value
+	return value
 
 #------------------------------------------------------------------
 
@@ -248,7 +238,9 @@ img = cv2.imread('../LineBot_sdk/' + path)
 
 img = chkSize(img)
 
-filter_color(img)
+ans = filter_color(img)
+
+print ans
 
 #------------------------------------------------------------------
 
